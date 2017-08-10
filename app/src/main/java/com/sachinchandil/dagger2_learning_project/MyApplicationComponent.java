@@ -1,8 +1,13 @@
 package com.sachinchandil.dagger2_learning_project;
 
-import dagger.Component;
-import dagger.android.AndroidInjector;
+import android.app.Application;
 
-@Component(modules = {MyApplicationModule.class})
-public interface MyApplicationComponent extends AndroidInjector<MyApplication> {
+import dagger.Component;
+
+@Component(modules = {ContextModule.class, MyApplicationModule.class})
+public interface MyApplicationComponent {
+
+    void inject(MainActivity activity);
+
+    void inject(Application activity);
 }

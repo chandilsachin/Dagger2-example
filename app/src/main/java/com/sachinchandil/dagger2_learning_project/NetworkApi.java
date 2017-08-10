@@ -1,12 +1,10 @@
 package com.sachinchandil.dagger2_learning_project;
 
-import javax.inject.Inject;
-
-import dagger.Provides;
+import android.content.Context;
 
 public class NetworkApi {
 
-    public NetworkApi(){
+    public NetworkApi(Context context) {
     }
 
 

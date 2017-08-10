@@ -18,9 +18,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        AndroidInjection.inject(this);
+        //AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        MyApplication.getComponent().inject(this);
         boolean injected = api != null;
         TextView tvText = findViewById(R.id.tvText);
         String message = "";

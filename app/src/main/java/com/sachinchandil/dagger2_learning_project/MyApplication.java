@@ -1,27 +1,20 @@
 package com.sachinchandil.dagger2_learning_project;
 
-import android.app.Activity;
 import android.app.Application;
 
-import javax.inject.Inject;
+public class MyApplication extends Application {
 
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasActivityInjector;
+    private static MyApplicationComponent component;
 
-public class MyApplication extends Application implements HasActivityInjector{
-
-    @Inject
-    DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
+    public static MyApplicationComponent getComponent() {
+        return component;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        DaggerMyApplicationComponent.create().inject(this);
-    }
-
-    @Override
-    public AndroidInjector<Activity> activityInjector() {
-        return dispatchingAndroidInjector;
+        component = DaggerMyApplicationComponent.builder()
+                .contextModule(new ContextModule(this))
+                .build();
     }
 }
